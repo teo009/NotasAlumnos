@@ -4,9 +4,8 @@ import {
 } from 'react-native';
 
 const Notes = () => {
-    
-    const [x, setX] = useState<number>()
 
+    const [NF, setNF] = useState<number>()
     const [firstParcial, setFirstParcial] = useState<string>('')
     const [secondParcial, setSecondParcial] = useState<string>('')
 
@@ -23,6 +22,7 @@ const Notes = () => {
         setEstudiante(allText)
         //console.log(secondParcial)
         const parcials = (parseFloat(firstParcial) + parseFloat(secondParcial))/2
+        setNF(parcials)
 
         //Guardando en arreglo de notas
         const ArrTotal: string[] = [parcials.toString()]
@@ -60,7 +60,7 @@ const Notes = () => {
                             </View>
                             <View>
                                 <Text>NF</Text>
-                                <Text style={styles.inputPaciales}>{total}</Text>
+                                <Text style={styles.inputPaciales}>{NF}</Text>
                             </View>
                             <View>
                                 <TouchableOpacity
@@ -80,8 +80,7 @@ const Notes = () => {
                                 <Text key={index}>{estudent}</Text>
                                 <Text
                                     style={[
-                                        total[index] < 60 ? styles.textReprobed : null,
-                                        total[index] > 59 ? styles.textAprobado : null
+                                        total[index] < '60' ? styles.textReprobed : styles.textAprobado,
                                     ]}
                                 >
                                     Nota final: {total[index]}
