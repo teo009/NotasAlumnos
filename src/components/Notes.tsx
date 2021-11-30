@@ -5,14 +5,17 @@ import {
 
 const Notes = () => {
 
-    const [text, setText] = useState<string>()
+    const [text, setText] = useState<string>('')
     const [estudiante, setEstudiante] = useState<string[]>([
         'Alumno de prueba 1',
         'Alumno de prueba 2',
     ])
 
     const handleAdd = () => {
-        alert('Agregando estudiante')
+        //alert('Agregando estudiante')
+        const text2: string[] = [text]
+        const allText: string[] = [...estudiante, ...text2]
+        setEstudiante(allText)
     }
 
     return (
@@ -24,6 +27,7 @@ const Notes = () => {
                         <TextInput
                             style={styles.input}
                             placeholder='Nombre del Estudiante'
+                            onChangeText={text => setText(text)}
                         />
                         <View style={styles.parciales}>
                             <View>
@@ -58,12 +62,15 @@ const Notes = () => {
                         </View>
                     </View>
                 </View>
-                <View style={styles.lista}>
+                <View style={styles.listaSection}>
                     {
-
+                        estudiante.map((estudent, index) => (
+                            <View style={styles.lista}>
+                                <Text key={index}>{estudent}</Text>
+                                <Text>Nota final: 72</Text>
+                            </View>
+                        ))
                     }
-                    <Text>Teodoro Obando</Text>
-                    <Text>Nota Final: 72</Text>
                 </View>
             </View>
         </ScrollView>
@@ -114,15 +121,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#C4C4C4',
     },
-    lista: {
+    listaSection: {
         paddingHorizontal: 7,
         marginTop: 30,
-        display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'space-between',
         borderWidth: 2,
         paddingVertical: 27,
         borderRadius: 6,
         borderColor: '#22B5A3'
+    },
+    lista: {
+        marginBottom: 20,
+        marginHorizontal: 5,
+        borderWidth: 1,
+        backgroundColor: '#a1caf1',
+        paddingVertical: 25,
+        paddingHorizontal: 7,
+        borderRadius: 7,
+        alignItems: 'center',    
+        justifyContent: 'space-between',    
+        flexDirection: 'row',
     },
 })
