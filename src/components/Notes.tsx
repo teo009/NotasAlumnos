@@ -4,26 +4,30 @@ import {
 } from 'react-native';
 
 const Notes = () => {
+    
+    const [x, setX] = useState<number>()
 
     const [firstParcial, setFirstParcial] = useState<string>('')
     const [secondParcial, setSecondParcial] = useState<string>('')
-    const [total, setTotal] = useState<string>()
+
+    //Arreglo de notas
+    const [total, setTotal] = useState<string[]>([])
 
     const [text, setText] = useState<string>('')
-    const [estudiante, setEstudiante] = useState<string[]>([
-        'Alumno de prueba 1',
-        'Alumno de prueba 2',
-    ])
+    const [estudiante, setEstudiante] = useState<string[]>([])
 
     const handleAdd = () => {
         //alert('Agregando estudiante')
         const text2: string[] = [text]
         const allText: string[] = [...estudiante, ...text2]
         setEstudiante(allText)
+        //console.log(secondParcial)
+        const parcials = (parseFloat(firstParcial) + parseFloat(secondParcial))/2
 
-        console.log(secondParcial)
-        const parcials = (parseFloat(firstParcial) + parseFloat(secondParcial))
-        setTotal(parcials.toString())
+        //Guardando en arreglo de notas
+        const ArrTotal: string[] = [parcials.toString()]
+        const allTotal: string[] = [...total, ...ArrTotal]
+        setTotal(allTotal)
     }
 
     return (
@@ -74,7 +78,14 @@ const Notes = () => {
                         estudiante.map((estudent, index) => (
                             <View style={styles.lista}>
                                 <Text key={index}>{estudent}</Text>
-                                <Text>Nota final: {total}</Text>
+                                <Text
+                                    style={[
+                                        total[index] < 60 ? styles.textReprobed : null,
+                                        total[index] > 59 ? styles.textAprobado : null
+                                    ]}
+                                >
+                                    Nota final: {total[index]}
+                                </Text>
                             </View>
                         ))
                     }
@@ -149,4 +160,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',    
         flexDirection: 'row',
     },
+    textAprobado: {
+        color: 'green',
+    },
+    textReprobed: {
+        color: 'red',
+    }
+
 })
