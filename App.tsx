@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF'
   },
   container: {
-    marginTop: 30,
+    marginTop: 40,
     paddingVertical: 40,
   },
   texto: {
-    fontSize: 35,
+    fontSize: 40,
     fontWeight: 'bold',
 
   },
