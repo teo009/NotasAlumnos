@@ -5,6 +5,10 @@ import {
 
 const Notes = () => {
 
+    const [firstParcial, setFirstParcial] = useState<string>('')
+    const [secondParcial, setSecondParcial] = useState<string>('')
+    const [total, setTotal] = useState<string>()
+
     const [text, setText] = useState<string>('')
     const [estudiante, setEstudiante] = useState<string[]>([
         'Alumno de prueba 1',
@@ -16,6 +20,10 @@ const Notes = () => {
         const text2: string[] = [text]
         const allText: string[] = [...estudiante, ...text2]
         setEstudiante(allText)
+
+        console.log(secondParcial)
+        const parcials = (parseFloat(firstParcial) + parseFloat(secondParcial))
+        setTotal(parcials.toString())
     }
 
     return (
@@ -35,6 +43,7 @@ const Notes = () => {
                                 <TextInput
                                     style={styles.inputPaciales}
                                     placeholder='IP'
+                                    onChangeText={firstParcial => setFirstParcial(firstParcial)}
                                 />
                             </View>
                             <View>
@@ -42,14 +51,12 @@ const Notes = () => {
                                 <TextInput
                                     style={styles.inputPaciales}
                                     placeholder='IIP'
+                                    onChangeText={secondParcial => setSecondParcial(secondParcial)}
                                 />
                             </View>
                             <View>
                                 <Text>NF</Text>
-                                <TextInput
-                                    style={styles.inputPaciales}
-                                    placeholder='NF'
-                                />
+                                <Text style={styles.inputPaciales}>{total}</Text>
                             </View>
                             <View>
                                 <TouchableOpacity
@@ -67,7 +74,7 @@ const Notes = () => {
                         estudiante.map((estudent, index) => (
                             <View style={styles.lista}>
                                 <Text key={index}>{estudent}</Text>
-                                <Text>Nota final: 72</Text>
+                                <Text>Nota final: {total}</Text>
                             </View>
                         ))
                     }
