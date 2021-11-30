@@ -20,6 +20,7 @@ const Notes = () => {
         const text2: string[] = [text]
         const allText: string[] = [...estudiante, ...text2]
         setEstudiante(allText)
+        alert('Registro agregado Exitosamente')
     }
     const handleAddNotes = () => {
         const parcials = (parseFloat(firstParcial) + parseFloat(secondParcial))/2
