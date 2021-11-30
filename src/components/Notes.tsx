@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { 
     View, Text, ScrollView, StyleSheet, TextInput, TouchableOpacity
 } from 'react-native';
 
 const Notes = () => {
+
+    const [text, setText] = useState<string>()
+    const [estudiante, setEstudiante] = useState<string[]>([
+        'Alumno de prueba 1',
+        'Alumno de prueba 2',
+    ])
+
+    const handleAdd = () => {
+        alert('Agregando estudiante')
+    }
+
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -18,33 +29,39 @@ const Notes = () => {
                             <View>
                                 <Text>IP</Text>
                                 <TextInput
-                                    style={{}}
+                                    style={styles.inputPaciales}
                                     placeholder='IP'
                                 />
                             </View>
                             <View>
                                 <Text>IIP</Text>
                                 <TextInput
-                                    style={{}}
+                                    style={styles.inputPaciales}
                                     placeholder='IIP'
                                 />
                             </View>
                             <View>
                                 <Text>NF</Text>
                                 <TextInput
-                                    style={{}}
+                                    style={styles.inputPaciales}
                                     placeholder='NF'
                                 />
                             </View>
-                            <TouchableOpacity
-                                style={styles.button}
-                            >
-                                <Text>Agregar</Text>
-                            </TouchableOpacity>
+                            <View>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => handleAdd()}
+                                >
+                                    <Text>Agregar</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </View>
                 <View style={styles.lista}>
+                    {
+
+                    }
                     <Text>Teodoro Obando</Text>
                     <Text>Nota Final: 72</Text>
                 </View>
@@ -82,9 +99,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    inputPaciales: {
+        width: 40,
+        borderWidth: 1,
+        textAlign: 'center',
+        paddingVertical: 15,
+    },
     button: {
         borderWidth: 1,
         borderRadius: 6,
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+        marginTop: 17,
+        justifyContent: 'center',
+        backgroundColor: '#C4C4C4',
     },
     lista: {
         paddingHorizontal: 7,
